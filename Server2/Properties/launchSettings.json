@@ -1,0 +1,20 @@
+{
+  "profiles": {
+    "Server2": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "applicationUrl": "https://localhost:50000;http://localhost:50001"
+    },
+    "Server2.noie": {
+      "commandName": "Project",
+      "launchBrowser": false,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "applicationUrl": "https://localhost:50000;http://localhost:50001"
+    }
+  }
+}

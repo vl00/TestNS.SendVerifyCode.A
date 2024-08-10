@@ -1,0 +1,45 @@
+<Project>
+  <Import Condition=" Exists('$(MSBuildProjectDirectory)/obj/rg.proj/InterceptorsPreviewNamespaces.xml') " Project="$(MSBuildProjectDirectory)/obj/rg.proj/InterceptorsPreviewNamespaces.xml" />
+
+  <PropertyGroup>
+    <v__netcoreapp>net8.0</v__netcoreapp>
+    <v__netstandard>netstandard2.1</v__netstandard>
+    <SourceRoot>$(MSBuildThisFileDirectory)</SourceRoot>
+  </PropertyGroup>
+  
+  <PropertyGroup>
+    <LangVersion>latest</LangVersion>
+    <!--<GenerateAssemblyInfo>false</GenerateAssemblyInfo>-->
+    <!--<GenerateDocumentationFile>true</GenerateDocumentationFile>-->
+    <Nullable>disable</Nullable>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+
+  <!--#region /.ob/ for no use -->
+  <ItemGroup>
+    <Compile Remove=".ob\**" />
+    <EmbeddedResource Remove=".ob\**" />
+    <None Remove=".ob\**" />
+  </ItemGroup>
+  <!--#endregion -->
+  
+  <!--#region App_g_Code for rg -->
+  <Target Name="rg_PreBuild" BeforeTargets="PreBuildEvent">
+    <ItemGroup>
+      <Compile Include="obj\rg\**" />
+      <Compile Include="App_g_Code\**" />
+    </ItemGroup>
+  </Target>
+  <ItemGroup>
+    <Compile Remove="App_g_Code\**" />
+    <Content Remove="App_g_Code\**" />
+    <EmbeddedResource Remove="App_g_Code\**" />
+    <None Remove="App_g_Code\**" />
+  </ItemGroup>
+  <!--#endregion App_g_Code for rg -->
+
+  <PropertyGroup>
+
+  </PropertyGroup>
+
+</Project>
