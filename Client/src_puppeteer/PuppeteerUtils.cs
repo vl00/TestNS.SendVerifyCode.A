@@ -126,6 +126,11 @@ public static partial class PuppeteerUtils
     {
         throw new Exception("不会自己写吗？");
     }
+	
+	public static async Task<IFrame> ExGetIframeAsync(this IFrame frame, string selector)
+    {
+        throw new Exception("不会自己写吗？");
+    }
 
     public static IPage GetPage(this IFrame iframe)
     {

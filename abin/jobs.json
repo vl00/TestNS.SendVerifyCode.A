@@ -1,0 +1,22 @@
+// 用notepad2打开
+[
+    //# 直接发
+    { "name": "迅雷云盘", "type": "Svc_迅雷云盘", "method": "OnHandle" },
+
+    //# 纯滑条
+    { "name": "大众点评", "type": "Svc_大众点评", "method": "OnHandle" },
+
+    //# 图片验证码
+    { "name": "25game", "type": "Svc_25game", "method": "OnHandle" },
+
+    //# 先直接发,用多了会有滑块缺口
+    { "name": "taobao", "type": "Svc_Taobao", "method": "OnHandle" },
+
+    //# 滑块缺口
+    { "name": "苏宁易购", "type": "Svc_苏宁易购", "method": "OnHandle" },
+
+    // 文字点选
+    { "name": "天眼查", "type": "Svc_tianyancha", "method": "OnHandle" },
+
+    null // end
+]

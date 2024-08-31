@@ -45,7 +45,7 @@ public partial class SendVcController(IServiceProvider serviceProvider)
         });
     }
 
-    [HttpGet("result")]
+    [HttpGet(@"result/{id:required}")]
     [ProducesResponseType(typeof(object), 200)]
     public async Task<Fn2Result> GetResult(string id)
     {

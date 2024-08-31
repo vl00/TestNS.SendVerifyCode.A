@@ -158,8 +158,10 @@ partial class Svc_tianyancha(IServiceProvider serviceProvider)
 
         async Task<int> CheckMove()
         {
-            await Task.Delay(3000, cancellation);
-            var ok = await page.EvaluateFunctionAsync<int>($$"""
+            var ok = -1;
+            for (var i = 0; i < 3; i++)
+            {
+                ok = await page.EvaluateFunctionAsync<int>($$"""
                     ()=>{
                     let a = document.querySelector('.{{clss}}') || document.querySelector('.c_div .input-group-btn');
                     let s = a?.innerText?.toLowerCase() || '';
@@ -167,6 +169,9 @@ partial class Svc_tianyancha(IServiceProvider serviceProvider)
                     return -1;
                     }
                     """);
+                if (ok == 0) break;
+                await Task.Delay(1000, cancellation);
+            }
             return ok;
         }
     }

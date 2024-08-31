@@ -96,6 +96,8 @@ void ConfigureServices(IServiceCollection services, IConfiguration config)
     {
         opt.Address = address;
         opt.Exe = Path.Combine(Directory.GetCurrentDirectory(), config["process:exe"]);
+		opt.A = config["process:a"];
+		if (opt.A is null or "") opt.A = Path.GetDirectoryName(opt.Exe);
         opt.Wd = config["process:wd"]?.Replace('\\', '/');
         if (opt.Wd is null) opt.Wd = Path.GetDirectoryName(opt.Exe);
         else if (opt.Wd is "" or ".") opt.Wd = Directory.GetCurrentDirectory();

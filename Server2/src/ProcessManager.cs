@@ -12,6 +12,7 @@ public class ProcessOption
 {
     public string Address;
     public string Exe;
+    public string A;
     public string Wd;
 }
 
@@ -74,13 +75,15 @@ public class ProcessManager(ILogger<ProcessManager> log, ProcessOption opt)
             UseShellExecute = false,
         };
         var exeDir = Path.GetDirectoryName(_opt.Exe);
+        var aDir = Path.GetFullPath(_opt.A).Replace('\\', '/').TrimEnd('/');
         if (_opt.Wd != null)
         {
             psi.WorkingDirectory = Path.Combine(_opt.Wd, $"{(i == -1 ? _ps.Count : i)}").Replace('\\', '/');
-            try { if (!Directory.Exists(psi.WorkingDirectory)) Directory.CreateDirectory(psi.WorkingDirectory); } catch { }
-            if (!File.Exists($"{exeDir}/appsettings.json")) exeDir = _opt.Wd;
-            try { File.Copy($"{exeDir}/appsettings.json", $"{psi.WorkingDirectory}/appsettings.json", true); } catch { }
-            try { File.Copy($"{exeDir}/nlog.config", $"{psi.WorkingDirectory}/nlog.config", true); } catch { }
+            if (!Directory.Exists(psi.WorkingDirectory)) Directory.CreateDirectory(psi.WorkingDirectory);
+            //Console.WriteLine(aDir);
+            if (!File.Exists($"{aDir}/appsettings.json")) aDir = _opt.Wd;
+            File.Copy($"{aDir}/appsettings.json", $"{psi.WorkingDirectory}/appsettings.json", true);
+            File.Copy($"{aDir}/nlog.config", $"{psi.WorkingDirectory}/nlog.config", true);
         }
         //
         {
@@ -88,7 +91,7 @@ public class ProcessManager(ILogger<ProcessManager> log, ProcessOption opt)
             //psi.StandardInputEncoding = psi.StandardOutputEncoding = psi.StandardErrorEncoding = Encoding.UTF8;
         }
         //
-        psi.Environment.Add("exe-dir", exeDir);
+        psi.Environment.Add("exe-dir", aDir);
         psi.Environment.Add("xid", xid.ToString());
         psi.Environment.Add("tc", tc.ToString());
         //

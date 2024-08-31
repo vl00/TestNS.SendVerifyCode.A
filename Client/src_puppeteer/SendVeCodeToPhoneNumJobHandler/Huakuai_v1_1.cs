@@ -30,7 +30,7 @@ public class Huakuai_v1_1
     public int RetryCount = 5;
     public int RetryPerDelayMs = 0;
     public decimal Diff = 0m;
-    public decimal Diff2 = 0.2m;
+    public decimal? Diff2 = 0.2m;
     public string BgSelector = "#c_bg";
     public string HuaKuaiSelector = "#c_hk";
     public string TuoSelector = "#c_tuo";
@@ -206,7 +206,7 @@ LB_yanzhengma:
         }
         ctx.Logger.LogDebug("x={x}, huakuai left={xleft}, x1={x1}", x, xleft, x1 - x0);
 
-        await page.Mouse.UpAsync();
+        await page.Mouse.UpAsync(new() { Delay = 100 });
         await page.Mouse.ResetAsync();
     }
 }

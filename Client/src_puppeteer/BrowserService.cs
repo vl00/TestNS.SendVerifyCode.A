@@ -35,6 +35,8 @@ public class BrowserService(IConfiguration config)
             "--disable-blink-features=AutomationControlled",
             "--disable-infobars",
             "--disable-extensions",
+			
+			"--start-maximized",
         };
         //launchOptions.IgnoreDefaultArgs = true;
         launchOptions.IgnoredDefaultArgs = new[]
